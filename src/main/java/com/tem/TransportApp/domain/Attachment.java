@@ -9,8 +9,8 @@ import org.hibernate.annotations.GenericGenerator;
 @Data
 @Entity
 @NoArgsConstructor
+@Table(name = "_attachment")
 public class Attachment {
-
 
     @Id
     @GeneratedValue(generator = "uuid")
