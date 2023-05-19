@@ -35,7 +35,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers("/api/v1/auth/**")
                 .permitAll()
-                .requestMatchers(POST,"/travels/**").hasAnyRole(String.valueOf(ADMIN))
+                .requestMatchers(POST,"/travels/**").hasAnyRole(ADMIN.name())
                 .anyRequest()
                 .authenticated()
                 .and()
