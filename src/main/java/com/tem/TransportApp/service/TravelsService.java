@@ -2,6 +2,7 @@ package com.tem.TransportApp.service;
 
 import com.tem.TransportApp.domain.Location;
 import com.tem.TransportApp.dto.LocationDto;
+import com.tem.TransportApp.dto.VehicleDto;
 import com.tem.TransportApp.dto.response.GenericResponse;
 import com.tem.TransportApp.repository.LocationRepository;
 import com.tem.TransportApp.repository.TravelsRepository;
@@ -22,7 +23,7 @@ public class TravelsService {
     private final LocationRepository locationRepository;
 
     public GenericResponse addLocation(List<LocationDto> locationDto) {
-        List<String> alreadyExist  = new ArrayList<>();
+        List<Location> alreadyExist  = new ArrayList<>();
         locationDto.forEach(location -> {
             Location existCheck = locationRepository.findLocationByName(location.getStateName());
             if(existCheck == null){
@@ -30,15 +31,25 @@ public class TravelsService {
                 newLocation.setName(location.getStateName());
                 newLocation.setSpecificPack(location.getSpecificPack());
                 locationRepository.save(newLocation);
+
             }
+
             else{
-                alreadyExist.add(location.getStateName());
+                alreadyExist.add(locationRepository.findLocationByName(location.getStateName()));
             }
+
         });
-        if(alreadyExist == null){
-            return new GenericResponse("00","Locations saved",null,null);
-        }
-        return new GenericResponse("00",
-                "Some locations already exist",alreadyExist,null);
+
+
+//        if(alreadyExist!= null){
+//            return new GenericResponse("00",
+//                    "Some locations already exist",alreadyExist,null);
+//        }
+        return new GenericResponse("00","Locations saved",null,null);
+    }
+
+    public GenericResponse addVehicle(List<VehicleDto> vehicleDtos) {
+
+        return null;
     }
 }
