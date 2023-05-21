@@ -21,12 +21,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -191,4 +195,18 @@ public class AuthenticationService {
 
     }
 
+    public GenericResponse getCurrentUser(AppUser appUser) {
+//        Map<String,Object> user = new HashMap<>();
+        log.info("API to get current User");
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        user.put("Principal",  authentication.getPrincipal());
+//        user.put("Credentials",authentication.getCredentials());
+//        user.put("Authorities",authentication.getAuthorities());
+//        user.put("Name",authentication.getName());
+//        user.put("Details",authentication.getDetails());
+
+        log.info("Authentication: " + appUser);
+        return new GenericResponse("00","The Current User is: ",
+                appUser,null);
+    }
 }

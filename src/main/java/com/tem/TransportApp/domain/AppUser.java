@@ -1,7 +1,10 @@
 package com.tem.TransportApp.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +20,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Transactional
 @Entity
 @Table(name = "_user")
 public class AppUser implements UserDetails {
@@ -32,6 +36,7 @@ public class AppUser implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
 

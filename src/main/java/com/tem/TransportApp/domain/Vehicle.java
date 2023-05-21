@@ -1,16 +1,11 @@
 package com.tem.TransportApp.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Data
+@ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -18,10 +13,17 @@ import lombok.RequiredArgsConstructor;
 public class Vehicle {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
+    //Specific name of Transport provider
+    private String nameOfVechileProvider;
     private String vehicleType;
+    private Integer numberOfSits;
+    private String plateNo;
+    private String dateAdded;
 
-
+    public Vehicle(String nameOfVechileProvider, String vehicleType) {
+        this.nameOfVechileProvider = nameOfVechileProvider;
+        this.vehicleType = vehicleType;
+    }
 }

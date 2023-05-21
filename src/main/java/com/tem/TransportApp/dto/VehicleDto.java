@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class VehicleDto {
 
-    private String name;
+    private String nameVehicleProvider;
     private String vehicleType;
+    private int noOfSits;
+    private String plateNo;
 }

@@ -15,6 +15,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
 import static com.tem.TransportApp.domain.Role.ADMIN;
+import static com.tem.TransportApp.domain.Role.TRANSPORTPROVIDER;
 import static org.springframework.http.HttpMethod.POST;
 
 @Configuration
@@ -35,7 +36,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers("/api/v1/auth/**")
                 .permitAll()
-                .requestMatchers(POST,"/travels/**").hasAnyRole(ADMIN.name())
+                .requestMatchers(POST,"/admin/v1/**").hasAnyRole(ADMIN.name())
+                .requestMatchers(POST,"/travels/**").hasAnyRole(ADMIN.name(),TRANSPORTPROVIDER.name())
                 .anyRequest()
                 .authenticated()
                 .and()

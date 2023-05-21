@@ -1,15 +1,18 @@
 package com.tem.TransportApp.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.transaction.Transactional;
+import lombok.*;
 
 @Entity
 @Builder
-@Data
+@Getter
+@Setter
+@Transactional
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "_token")
@@ -29,6 +32,7 @@ public class Token {
 
     public boolean expired;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id")
     public AppUser  user;

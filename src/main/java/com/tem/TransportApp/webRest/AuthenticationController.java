@@ -1,6 +1,7 @@
 package com.tem.TransportApp.webRest;
 
 
+import com.tem.TransportApp.domain.AppUser;
 import com.tem.TransportApp.dto.AuthenticationRequest;
 import com.tem.TransportApp.dto.RegisterRequest;
 import com.tem.TransportApp.dto.response.AuthenticationResponse;
@@ -9,7 +10,9 @@ import com.tem.TransportApp.service.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -52,6 +55,14 @@ public class AuthenticationController {
     ) throws IOException {
 
         return ResponseEntity.ok(service.saveAttachment(webmail,file));
+
+    }
+
+    //API endpoint to get current logged in user
+    @GetMapping("/getCurrentUser")
+    public ResponseEntity<GenericResponse> getCurrentLogginUser(@AuthenticationPrincipal AppUser appUser){
+        GenericResponse response = service.getCurrentUser(appUser);
+        return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
 
     }
 
