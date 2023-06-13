@@ -29,9 +29,11 @@ public class TravelsService {
     private final VehicleRepository vehicleRepository;
 
     public GenericResponse addLocation(List<LocationDto> locationDto) {
+        log.info("API to ADD LOCATION");
         List<Location> alreadyExist  = new ArrayList<>();
         locationDto.forEach(location -> {
-            Location existCheck = locationRepository.findLocationByName(location.getStateName());
+            Location existCheck = locationRepository
+                    .findLocationByNameAndAndSpecificPack(location.getStateName(), location.getSpecificPack());
             if(existCheck == null){
                 Location newLocation = new Location();
                 newLocation.setName(location.getStateName());
@@ -41,7 +43,8 @@ public class TravelsService {
             }
 
             else{
-                alreadyExist.add(locationRepository.findLocationByName(location.getStateName()));
+                alreadyExist.add(locationRepository.
+                        findLocationByNameAndAndSpecificPack(location.getStateName(), location.getSpecificPack()));
             }
 
         });
@@ -116,5 +119,14 @@ public class TravelsService {
         return new GenericResponse("00"
                 ,"The travels availabe in " + location
                 , getTravels,null);
+    }
+
+    public GenericResponse seeLocationsInAState(String state) {
+        log.info("API to get AVAILABLE LOCATIONS IN A STATE");
+        List<Location> locationList = locationRepository.findLocationsByName(state);
+        if(locationList==null){
+            return new GenericResponse("00","There is no location associated with "+ state,null,null);
+        }
+        return new GenericResponse("00", "Locations for "+ state + " state", locationList,null);
     }
 }
