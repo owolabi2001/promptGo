@@ -18,10 +18,11 @@ import java.util.List;
 public class AdminController {
 
     private final TravelsService travelsService;
-    @PostMapping("/addLocations")
+
 //    @ResponseStatus(code = HttpStatus.OK)
 //    @PreAuthorize("hasRole('ADMIN')")
 //    @Secured("ROLE_ADMIN")
+    @PostMapping("/addLocations")
     public ResponseEntity<GenericResponse> addLocations(@RequestBody List<LocationDto> locationDto){
         GenericResponse response= travelsService.addLocation(locationDto);
         return new ResponseEntity<>(response, HttpStatus.OK);

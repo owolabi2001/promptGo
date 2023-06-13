@@ -45,6 +45,16 @@ public class TravelsController {
 
     }
 
+    @GetMapping("/locations/{state}")
+    public ResponseEntity<GenericResponse> seeAvailableLocationsInAState(
+            @PathVariable String state){
+        return new ResponseEntity<>(
+                travelsService.seeLocationsInAState(state)
+                ,HttpStatus.ACCEPTED);
+
+    }
+
     // Remember to add endpoints to list buses going to a specific location
+
 
 }
