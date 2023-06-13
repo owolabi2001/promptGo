@@ -19,7 +19,7 @@ public class AdminController {
 
     private final TravelsService travelsService;
     @PostMapping("/addLocations")
-    @ResponseStatus(code = HttpStatus.OK)
+//    @ResponseStatus(code = HttpStatus.OK)
 //    @PreAuthorize("hasRole('ADMIN')")
 //    @Secured("ROLE_ADMIN")
     public ResponseEntity<GenericResponse> addLocations(@RequestBody List<LocationDto> locationDto){

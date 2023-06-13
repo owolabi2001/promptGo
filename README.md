@@ -6,6 +6,8 @@ promptGo is a Transport Application designed for student use In Landmark Univers
 * [Aim](#aim)
 * [Problems It's solving](#problems-its-solving)
 * [Technologies Used](#technologies-used-)
+* [Swagger documentation](#swagger-documentation)
+* [Setting Up the Project](#setting-up-the-project)
 <!-- TOC -->
 
 # Aim
@@ -24,4 +26,11 @@ The major problems encountered which the platform is actively trying to solve in
 5. Docker 
 6. Json Web Token(JWT)
 7. External API's from Interswitch payment platform
+8. Swagger for documentation using springdoc's
 
+
+# Swagger documentation
+The API documentation can be assesed in the link below:
+https://transport-application.onrender.com/swagger-ui/index.html#/
+
+# Setting Up the Project
