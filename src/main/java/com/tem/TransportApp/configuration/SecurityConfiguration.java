@@ -34,6 +34,8 @@ public class SecurityConfiguration {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
+                .requestMatchers("/**")
+                .permitAll()
                 .requestMatchers("/api/v1/auth/**")
                 .permitAll()
                 .requestMatchers(POST,"/admin/v1/**").hasAnyRole(ADMIN.name())

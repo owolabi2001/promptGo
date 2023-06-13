@@ -2,10 +2,15 @@ package com.tem.TransportApp;
 
 import com.tem.TransportApp.dto.PaymentAuthDto;
 import com.tem.TransportApp.service.PaymentService;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@OpenAPIDefinition
+@SecurityScheme(type = SecuritySchemeType.APIKEY)
 public class TransportAppApplication {
 
 	public String PORT = System.getenv("PORT");

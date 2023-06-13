@@ -21,6 +21,7 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
+//@ResponseStatus
 public class AuthenticationController {
 
 
